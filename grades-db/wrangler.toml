@@ -1,0 +1,8 @@
+name = "grades-db"
+main = "src/index.ts"
+compatibility_date = "2023-04-23"
+
+[[ d1_databases ]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "unr_grades"
+database_id = "cd8e79be-3029-49fe-8996-c17679b187e2"
