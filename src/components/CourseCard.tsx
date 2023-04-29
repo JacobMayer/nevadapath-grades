@@ -5,6 +5,7 @@ import { IconTrash } from "@tabler/icons-react";
 import { gpaToGrade } from "../utils/utils";
 import * as vars from "../variables/Variables";
 import type { Grade } from "~/data/gradeType";
+import RMPLink from "./RMPLink";
 
 interface CourseInfo {
   color: string | undefined;
@@ -12,6 +13,7 @@ interface CourseInfo {
   index: number;
   stats: Grade;
   description: string;
+  instructor: string | null;
   term: string;
 }
 
@@ -93,7 +95,14 @@ export default function CourseCard(props: CourseInfo) {
           size="sm"
           style={{ color: secondaryColor, lineHeight: 1.5, paddingTop: 10 }}
         >
-          {props.term}
+          {props.term}{" "}
+          {String(props?.instructor) ? (
+            <>
+              •<RMPLink name={String(props?.instructor)} />
+            </>
+          ) : (
+            ""
+          )}
         </Text>
         <div className="block flex space-x-4 lg:hidden">
           <div>

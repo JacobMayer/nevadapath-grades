@@ -231,7 +231,7 @@ export function InputSelections() {
 
   return (
     <Grid className="px-6" grow>
-      <Grid.Col xs={7} sm={6} lg={3}>
+      <Grid.Col xs={7} sm={6} md={3} lg={3}>
         <Select
           instanceId="course-select"
           components={{
@@ -263,7 +263,7 @@ export function InputSelections() {
           placeholder="Select a class..."
         />
       </Grid.Col>
-      <Grid.Col xs={6} sm={6} lg={3}>
+      <Grid.Col xs={6} sm={6} md={3} lg={3}>
         <Select
           instanceId="section-select"
           components={{ Option: CustomOption, MenuList: MenuList }}
@@ -292,7 +292,7 @@ export function InputSelections() {
           placeholder="Select a section..."
         />
       </Grid.Col>
-      <Grid.Col xs={6} sm={6} lg={3}>
+      <Grid.Col xs={6} sm={6} md={3} lg={3}>
         <Select
           instanceId="term-select"
           components={{ Option: CustomOption, MenuList: MenuList }}
@@ -316,7 +316,7 @@ export function InputSelections() {
           placeholder="Select a term..."
         />
       </Grid.Col>
-      <Grid.Col xs={12} sm={12} lg={1}>
+      <Grid.Col xs={12} sm={12} md={3} lg={1}>
         <Button
           fullWidth
           disabled={buttonDisabled ? true : !selectedTerm ? true : false}

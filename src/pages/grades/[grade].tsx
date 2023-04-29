@@ -1,7 +1,11 @@
-import { Container, Stack } from "@mantine/core";
+import { Container, Stack, ActionIcon } from "@mantine/core";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import {
+  IconSquareRoundedArrowRightFilled,
+  IconSquareRoundedArrowLeftFilled,
+} from "@tabler/icons-react";
 
 import { InputSelections } from "../../components/selections";
 import CourseCard from "../../components/CourseCard";
@@ -181,6 +185,43 @@ export default function CourseGrade() {
 
   courses.map((item, i) => (item.color = colors[i] ?? item.color));
 
+  const [scrollX, setScrollX] = useState<number>(0); // For detecting start scroll postion
+  const [scrolEnd, setScrollEnd] = useState<boolean>(false); // For detecting end of scrolling
+
+  const scrl = useRef<HTMLDivElement>(null);
+
+  //Slide click
+  const slide = (shift: number): void => {
+    if (scrl.current !== null) {
+      scrl.current.scrollLeft += shift;
+      setScrollX(scrollX + shift);
+
+      if (
+        Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
+        scrl.current.offsetWidth
+      ) {
+        setScrollEnd(true);
+      } else {
+        setScrollEnd(false);
+      }
+    }
+  };
+
+  const scrollCheck = (): void => {
+    if (scrl.current !== null) {
+      setScrollX(scrl.current.scrollLeft);
+
+      if (
+        Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
+        scrl.current.offsetWidth
+      ) {
+        setScrollEnd(true);
+      } else {
+        setScrollEnd(false);
+      }
+    }
+  };
+
   return (
     <Container fluid={true}>
       <Head>
@@ -194,21 +235,48 @@ export default function CourseGrade() {
       </Head>
       <Stack spacing="xl">
         <InputSelections />
-        <div className="flex space-x-4 overflow-x-auto px-6">
-          {router.isReady &&
-            courses.map((course, i) => {
-              return (
-                <CourseCard
-                  key={i.toString()}
-                  course={course.title}
-                  description={course.description}
-                  term={course.term}
-                  stats={GradesList.Grades[course.courseIndex]!}
-                  index={course.courseIndex}
-                  color={colors[i]}
-                />
-              );
-            })}
+        <div>
+          <div className="mb-0.5">
+            {scrollX !== 0 && courses.length > 1 && (
+              <ActionIcon
+                variant="subtle"
+                className="absolute left-0 z-10 mt-20"
+                onClick={() => slide(-100)}
+              >
+                <IconSquareRoundedArrowLeftFilled size="1.5rem" />
+              </ActionIcon>
+            )}
+            {!scrolEnd && courses.length > 1 && (
+              <ActionIcon
+                variant="subtle"
+                className="absolute right-0 z-10 mt-20"
+                onClick={() => slide(+100)}
+              >
+                <IconSquareRoundedArrowRightFilled size="1.5rem" />
+              </ActionIcon>
+            )}
+          </div>
+          <div
+            className="relative flex space-x-4 overflow-x-auto px-6"
+            ref={scrl}
+            onScroll={scrollCheck}
+          >
+            {router.isReady &&
+              courses.map((course, i) => {
+                return (
+                  <CourseCard
+                    key={i.toString()}
+                    course={course.title}
+                    description={course.description}
+                    instructor={course.instructor}
+                    term={course.term}
+                    stats={GradesList.Grades[course.courseIndex]!}
+                    index={course.courseIndex}
+                    color={colors[i]}
+                  />
+                );
+              })}
+          </div>
         </div>
         {Object.keys(couseStats).length !== 0 && (
           <GradesGraph course={couseStats} payload={courses} />

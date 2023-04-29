@@ -10,11 +10,14 @@ import {
 } from "recharts";
 
 import Grades from "../../data/grades.json";
-import { ActionIcon, Group, Text, Button, HoverCard } from "@mantine/core";
+import { ActionIcon, Group, Text, HoverCard } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
+
 import { IconInfoCircle, IconDatabaseOff } from "@tabler/icons-react";
 import * as vars from "../../variables/Variables";
 import { gpaToGrade, percentileToString } from "../../utils/utils";
 import type { Grade, GradesData } from "~/data/gradeType";
+import RMPLink from "../RMPLink";
 
 const GradesList = Grades as GradesData;
 
@@ -63,7 +66,7 @@ const AsideMsg = ({ flag }: { flag: number }) => {
 
 const Disclaimer = () => {
   return (
-    <div className="flex items-start pl-16 pt-1 text-sm text-gray-500">
+    <div className="flex items-start pl-4 text-sm text-gray-500 sm:pl-16">
       <IconInfoCircle size={16} className="mr-2 mt-1" />
 
       <Text>
@@ -80,74 +83,18 @@ const Disclaimer = () => {
   );
 };
 
-const RMPLink = ({ name }: { name: string }) => {
-  const baseURL =
-    "https://www.ratemyprofessors.com/search/teachers?query=Vladimir+Pravosudov&sid=U2Nob29sLTQyODg%3D";
-
-  const names = name.split(";");
-
-  // const RMPLinks = names.map((name, index) => {
-  //   const url = new URL(baseURL);
-  //   const searchName = name.trim().replace(/\s\w+\.?/i, "");
-  //   const [lastName, firstName] = searchName.split(",");
-  //   url.searchParams.set("query", `${firstName} ${lastName}`);
-  //   return (
-  //       <Button
-  //         key={index}
-  //         component="a"
-  //         target="_blank"
-  //         href={url.toString()}
-  //         style={{ padding: 2.5 }}
-  //         compact
-  //         variant="subtle"
-  //       >
-  //         {name}
-  //       </Button>
-  //   );
-  // });
-
-  // const url = new URL(baseURL);
-  // const searchName = name.replace(/\s\w\.?/i, "");
-  // const [lastName, firstName] = searchName.split(",");
-  // url.searchParams.set("query", `${firstName} ${lastName}`);
-  // console.log(url.toString());
+const EmptyLabel = () => {
   return (
-    <>
-      {names.map((name, index) => {
-        const url = new URL(baseURL);
-        const searchName = name.trim().replace(/\s\w+\.?/i, "");
-        const [lastName = "", firstName = ""] = searchName.split(",");
-        url.searchParams.set("query", `${firstName} ${lastName}`);
-        return (
-          <Button
-            key={index}
-            component="a"
-            target="_blank"
-            href={url.toString()}
-            style={{ padding: 2.5 }}
-            compact
-            variant="subtle"
-          >
-            {name}
-          </Button>
-        );
-      })}
-    </>
+    <div className="flex flex-col items-center justify-center">
+      <ActionIcon variant="transparent" color="gray">
+        <IconDatabaseOff size={100} />
+      </ActionIcon>
+      <h3 className="mt-4 inline-block text-center text-base font-medium text-gray-500">
+        You have not added any <br /> classes yet.
+      </h3>
+    </div>
   );
 };
-
-// const EmptyLabel = () => {
-//   return (
-//     <div className="relative flex flex-col items-center justify-center">
-//       <ActionIcon variant="transparent" color="gray">
-//         <IconDatabaseOff size={100} />
-//       </ActionIcon>
-//       <h3 className="mt-4 inline-block text-center text-base font-medium text-gray-500">
-//         You have not added any <br /> classes yet.
-//       </h3>
-//     </div>
-//   );
-// };
 
 type Course = {
   title: string;
@@ -461,6 +408,40 @@ const YAxisTickFormatter = (value: number) => {
   return `${Math.ceil(value / 10) * 10}`;
 };
 
+interface CustomLabelProps {
+  x?: number;
+  y?: number;
+  width?: number;
+  value?: number;
+}
+
+const PercentageLabel: React.FC<CustomLabelProps> = ({
+  x,
+  y,
+  value,
+  width,
+}) => {
+  //todo: change text color
+
+  if (
+    value == undefined ||
+    width == undefined ||
+    x == undefined ||
+    y == undefined
+  ) {
+    return null;
+  }
+
+  const percentage = `${
+    value === 0 ? "" : value < 1 ? "<1%" : Math.round(value * 10) / 10
+  }%`;
+  return (
+    <text x={x + width} y={y} dx={20} dy={17} fontSize={12} textAnchor="middle">
+      {percentage}
+    </text>
+  );
+};
+
 const SimpleBarChart = ({ course, payload }: GradesGraphProps) => {
   //const colors = ["#228be6", "#40c057", "#fa52w, "#fab005"];
 
@@ -503,66 +484,176 @@ const SimpleBarChart = ({ course, payload }: GradesGraphProps) => {
   interface CustomMouseEvent extends React.MouseEvent<HTMLDivElement> {
     grade: string;
   }
+  const { height, width } = useViewportSize();
+
+  const formatGradeLabel = (gradeLabel: string) => {
+    return `${gradeLabel}`;
+  };
 
   return (
     <div className="relative">
-      <div className="flex min-w-0 flex-wrap-reverse lg:flex-nowrap">
-        <ResponsiveContainer width="100%" height={400} className="max-w-5xl">
-          <BarChart
-            width={800}
-            height={300}
-            onMouseMove={(event) => {
-              if (event.activePayload && event.activePayload.length === 1) {
-                const payload = event.activePayload[0] as {
-                  payload: CoursePayload;
-                };
-                //console.log(payload.payload, "payload");
-                handleLineHover(payload.payload.grade, 0);
-              }
-            }}
-            data={course.length > 0 ? course : vars.defaultGradeGraph}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <XAxis dataKey="grade" type="category" opacity="0.5" interval={0} />
-            {course.length > 0 ? (
-              <YAxis
-                //domain={[0, 100]}
+      <div className="pb-6 pl-6 text-xl font-medium lg:hidden">
+        Grade Distribution
+      </div>
+      {course.length <= 0 && ( // If no courses are selected, display the empty label
+        <div className="absolute inset-0 ml-4 mt-24 lg:mr-32">
+          <EmptyLabel />
+        </div>
+      )}
 
-                type="number"
-                unit="%"
-                opacity="0.5"
-              />
-            ) : (
-              <YAxis
-                domain={[0, 100]}
-                //tickFormatter={(tick) => `${tick}%`}
-                type="number"
-                opacity="0.5"
-              />
-            )}
-            <Tooltip
-              formatter={(value: string) => value + "%"}
-              cursor={course.length <= 0 ? false : { fill: "#EAEAEA" }}
-            />
-            <Legend />
-            {titles.map((item, i) => (
-              <Bar
-                key={i}
-                dataKey={item as string}
-                fill={vars.chartBarcolors[i]}
-                onMouseEnter={(event: CustomMouseEvent) =>
-                  handleLineHover(event.grade, i)
+      <div className="flex min-w-0 flex-wrap-reverse pr-6 lg:flex-nowrap">
+        {width <= 600 ? ( // If the screen width is less than 600px, display the aside below the graph
+          <ResponsiveContainer
+            width="100%"
+            height={
+              course.length >= 1
+                ? 400 +
+                  course.length *
+                    (5 * Math.pow(payload?.length || 0, 2) +
+                      15 * (payload?.length || 0) -
+                      5)
+                : 600
+            }
+          >
+            <BarChart
+              width={800}
+              height={300}
+              layout="vertical"
+              onMouseMove={(event) => {
+                if (event.activePayload && event.activePayload.length === 1) {
+                  const payload = event.activePayload[0] as {
+                    payload: CoursePayload;
+                  };
+                  //console.log(payload.payload, "payload");
+                  handleLineHover(payload.payload.grade, 0);
                 }
-                radius={[4, 4, 0, 0]}
+              }}
+              data={course.length > 0 ? course : vars.defaultGradeGraph}
+              margin={{ left: -30, bottom: 50, right: 30 }}
+            >
+              <YAxis
+                dataKey="grade"
+                type="category"
+                opacity="0.5"
+                interval={0}
+                textAnchor="start"
+                tickMargin={25}
+                tickFormatter={formatGradeLabel}
               />
-            ))}
-          </BarChart>
-        </ResponsiveContainer>
+              {course.length > 0 ? (
+                <XAxis
+                  //domain={[0, 100]}
+                  //tickFormatter={(tick) => `${tick}%`}
+                  dx={5}
+                  //textAnchor="center"
+                  type="number"
+                  unit="%"
+                  opacity="0.5"
+                />
+              ) : (
+                <XAxis
+                  domain={[0, 100]}
+                  //tickFormatter={(tick) => `${tick}%`}
+                  //textAnchor="middle"
+                  dx={5}
+                  unit="%"
+                  type="number"
+                  opacity="0.5"
+                />
+              )}
+              <Tooltip
+                formatter={(value: string) => value + "%"}
+                cursor={course.length <= 0 ? false : { fill: "#EAEAEA" }}
+              />
+              <Legend
+                verticalAlign="top"
+                align="left"
+                iconType="circle"
+                iconSize={10}
+                wrapperStyle={{
+                  paddingLeft: 55,
+                  paddingRight: 10,
+                  paddingBottom: 20,
+                }}
+              />
+              {titles.map((item, i) => (
+                <Bar
+                  key={i}
+                  dataKey={item as string}
+                  fill={vars.chartBarcolors[i]}
+                  onMouseEnter={(event: CustomMouseEvent) =>
+                    handleLineHover(event.grade, i)
+                  }
+                  label={<PercentageLabel />}
+                  radius={[0, 4, 4, 0]}
+                />
+              ))}
+            </BarChart>
+          </ResponsiveContainer>
+        ) : (
+          <ResponsiveContainer width="100%" height={400} className="max-w-5xl">
+            <BarChart
+              width={800}
+              height={300}
+              onMouseMove={(event) => {
+                if (event.activePayload && event.activePayload.length === 1) {
+                  const payload = event.activePayload[0] as {
+                    payload: CoursePayload;
+                  };
+                  //console.log(payload.payload, "payload");
+                  handleLineHover(payload.payload.grade, 0);
+                }
+              }}
+              data={course.length > 0 ? course : vars.defaultGradeGraph}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <XAxis
+                dataKey="grade"
+                type="category"
+                opacity="0.5"
+                interval={0}
+              />
+              {course.length > 0 ? (
+                <YAxis
+                  //domain={[0, 100]}
+
+                  type="number"
+                  unit="%"
+                  opacity="0.5"
+                />
+              ) : (
+                <YAxis
+                  domain={[0, 100]}
+                  //tickFormatter={(tick) => `${tick}%`}
+                  type="number"
+                  unit="%"
+                  opacity="0.5"
+                />
+              )}
+              <Tooltip
+                formatter={(value: string) => value + "%"}
+                cursor={course.length <= 0 ? false : { fill: "#EAEAEA" }}
+              />
+              <Legend />
+              {titles.map((item, i) => (
+                <Bar
+                  key={i}
+                  dataKey={item as string}
+                  fill={vars.chartBarcolors[i]}
+                  onMouseEnter={(event: CustomMouseEvent) =>
+                    handleLineHover(event.grade, i)
+                  }
+                  radius={[4, 4, 0, 0]}
+                />
+              ))}
+            </BarChart>
+          </ResponsiveContainer>
+        )}
         <div className="hidden w-64 flex-shrink-0 px-6 lg:block">
           {course.length <= 0 ? <EmptyAside /> : memoizedAside}
         </div>
