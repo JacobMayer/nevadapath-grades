@@ -1,5 +1,8 @@
-import React from "react";
 import { ImageResponse } from "@cloudflare/pages-plugin-vercel-og/api";
+
+export const config = {
+  runtime: "edge",
+};
 
 export const onRequest = async () => {
   return new ImageResponse(
