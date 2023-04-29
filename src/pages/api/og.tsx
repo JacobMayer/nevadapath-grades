@@ -161,7 +161,7 @@ export const config = {
 //   "Section Average": number;
 // }
 
-export default async function handler(req: NextRequest) {
+export default function handler(req: NextRequest) {
   // const { searchParams } = new URL(req.url);
 
   // if (!searchParams.has("course")) {
