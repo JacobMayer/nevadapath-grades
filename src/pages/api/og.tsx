@@ -251,5 +251,5 @@ export default function handler(req: NextRequest) {
   //   }
   // );
 
-  return new Response("Ayooo wassup");
+  return new Response("Ayooo wassup!");
 }
