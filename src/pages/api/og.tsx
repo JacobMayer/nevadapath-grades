@@ -164,11 +164,15 @@ export interface GradesData {
 export default async function handler(req: NextRequest) {
   const { searchParams } = new URL(req.url);
 
-  if (!searchParams.has("course")) {
+  if (!searchParams.has("courses")) {
     return new Response("Missing course parameter", { status: 400 });
   }
 
-  const course = searchParams.get("course");
+  const courses = searchParams.get("courses");
+
+  if (!courses) {
+    return new Response("Missing course parameter", { status: 400 });
+  }
 
   const letterGrades = [
     "A",
@@ -187,14 +191,24 @@ export default async function handler(req: NextRequest) {
     "U",
   ];
 
-  const response: Response = await fetch(
-    `https://grades-db.sultan7rs.workers.dev/api/grades/${course ?? ""}`
-  );
-  const data = (await response.json()) as unknown as GradesData[];
+  let data: GradesData[] = [];
+
+  for (const course of courses.split(",")) {
+    const response: Response = await fetch(
+      `https://grades-db.sultan7rs.workers.dev/api/grades/${course ?? ""}`
+    );
+    const courseData = (await response.json()) as unknown as GradesData[];
+    data = data.concat(courseData);
+  }
+
+  // const response: Response = await fetch(
+  //   `https://grades-db.sultan7rs.workers.dev/api/grades/${courses ?? ""}`
+  // );
+  //const data = (await response.json()) as unknown as GradesData[];
   //console.log(data);
 
   const datasets = data.map((course) => {
-    const label = `${course["Subject"]} ${course["Number"]} ${course["Ext"]} ${course["Section"]}`;
+    const label = `${course["Subject"]} ${course["Number"]} ${course["Ext"]} ${course["Section"]} ${course["Term"]}`;
 
     const grades = letterGrades.map((key) => {
       const grade = course[key];
@@ -212,7 +226,7 @@ export default async function handler(req: NextRequest) {
     };
   });
 
-  console.log(course);
+  console.log(courses);
 
   // const blob = await chartImage.blob();
   // const headers = { "Content-Type": "image/png" };
@@ -234,6 +248,11 @@ export default async function handler(req: NextRequest) {
       datasets: datasets,
     },
     options: {
+      title: {
+        display: true,
+        fontSize: 15,
+        text: "Nevadapath - UNR Grade Distributions",
+      },
       scales: {
         yAxes: [
           {
