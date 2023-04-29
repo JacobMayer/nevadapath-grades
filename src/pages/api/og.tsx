@@ -121,18 +121,11 @@
 // Next.js Edge API Routes: https://nextjs.org/docs/api-routes/edge-api-routes
 
 import type { NextRequest } from "next/server";
-import { ImageResponse } from "@cloudflare/pages-plugin-vercel-og/api";
 
 export const config = {
   runtime: "edge",
 };
 
 export default function handler(req: NextRequest) {
-  return new ImageResponse(
-    <div style={{ display: "flex" }}>Hello, world!</div>,
-    {
-      width: 1200,
-      height: 630,
-    }
-  );
+  return new Response(JSON.stringify({ name: "John Doe" }));
 }
