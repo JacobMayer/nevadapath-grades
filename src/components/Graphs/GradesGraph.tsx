@@ -496,7 +496,7 @@ const SimpleBarChart = ({ course, payload }: GradesGraphProps) => {
         Grade Distribution
       </div>
       {course.length <= 0 && ( // If no courses are selected, display the empty label
-        <div className="absolute inset-0 ml-4 mt-24 lg:mr-32">
+        <div className="absolute inset-0 ml-4 mt-24 lg:mr-44">
           <EmptyLabel />
         </div>
       )}
