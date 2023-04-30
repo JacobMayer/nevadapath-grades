@@ -192,8 +192,9 @@ export default async function handler(req: NextRequest) {
   ];
 
   let data: GradesData[] = [];
-
-  for (const course of courses.split(",")) {
+  console.log(courses);
+  for (let course of courses.split(",")) {
+    course = course.split("_")[1] || course;
     const response: Response = await fetch(
       `https://grades-db.sultan7rs.workers.dev/api/grades/${course ?? ""}`
     );
@@ -208,7 +209,9 @@ export default async function handler(req: NextRequest) {
   //console.log(data);
 
   const datasets = data.map((course) => {
-    const label = `${course["Subject"]} ${course["Number"]} ${course["Ext"]} ${course["Section"]} ${course["Term"]}`;
+    const label = `${course["Subject"]} ${course["Number"]} ${
+      course["Ext"] ? course["Ext"] : ""
+    } ${course["Section"]} ${course["Term"]}`;
 
     const grades = letterGrades.map((key) => {
       const grade = course[key];
@@ -226,7 +229,7 @@ export default async function handler(req: NextRequest) {
     };
   });
 
-  console.log(courses);
+  //console.log(courses);
 
   // const blob = await chartImage.blob();
   // const headers = { "Content-Type": "image/png" };

@@ -230,7 +230,11 @@ export default function CourseGrade() {
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:image"
-          content="*.nevadapath.com/api/og?course=PHYS-180-L-1001-Fall-2020"
+          content={`nevadapath.com/api/og?courses=${
+            router.query.grade
+              ? router.query.grade.toString().split("&").join(",")
+              : ""
+          }`}
         />
       </Head>
       <Stack spacing="xl">
