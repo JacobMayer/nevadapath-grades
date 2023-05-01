@@ -1,6 +1,15 @@
-import { useState } from "react";
-import { createStyles, Header, Text, rem } from "@mantine/core";
+import {
+  createStyles,
+  Header,
+  rem,
+  Button,
+  Group,
+  Burger,
+  Transition,
+  Paper,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import Link from "next/link";
 
 const HEADER_HEIGHT = rem(60);
 
@@ -88,33 +97,32 @@ interface HeaderResponsiveProps {
 }
 
 export default function Navbar({ links }: HeaderResponsiveProps) {
-  const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0]?.link);
-  const { classes, cx } = useStyles();
+  const [opened, { toggle }] = useDisclosure(false);
+  const { classes } = useStyles();
 
   const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={cx(classes.link, {
-        [classes.linkActive]: active === link.link,
-      })}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(link.link);
-        close();
-      }}
-    >
-      {link.label}
-    </a>
+    <Link key={link.label} href={link.link}>
+      <Button
+        variant="subtle"
+        className="font-semibold text-gray-700 hover:text-sky-500"
+        compact
+      >
+        {link.label}
+      </Button>
+    </Link>
   ));
 
   return (
     <Header height={HEADER_HEIGHT} className="flex flex-row items-center pl-6">
-      <Text className="whitespace-no-wrap mr-4 text-xl font-semibold">
-        Nevadapath
-      </Text>
-      {/* <Container className={classes.header}>
+      <Link href="/" passHref>
+        <Button
+          variant="subtle"
+          className="text-xl font-semibold text-gray-700 hover:text-sky-500"
+        >
+          Nevadapath
+        </Button>
+      </Link>
+      <div className="flex grow justify-end px-8 ">
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
@@ -133,7 +141,7 @@ export default function Navbar({ links }: HeaderResponsiveProps) {
             </Paper>
           )}
         </Transition>
-      </Container> */}
+      </div>
     </Header>
   );
 }

@@ -1,6 +1,6 @@
 import Navbar from "./navbar";
 export default function Layout({ children }: any) {
-  const links = [{ link: "/", label: "Home" }];
+  const links = [{ link: "/grades", label: "Grades" }];
   return (
     <>
       <Navbar links={links} />

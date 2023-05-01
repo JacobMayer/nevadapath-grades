@@ -39,22 +39,20 @@ const AsideMsg = ({ flag }: { flag: number }) => {
           <div style={{ display: "flex" }}>
             {flag === 1 && (
               <Text style={{ color: "#383838" }} size="sm">
-                Course average refers to the average of all sections available
-                across all instructors.
+                Course average is the average of every sections available across
+                all years.
               </Text>
             )}
             {flag === 2 && (
               <Text style={{ color: "#383838" }} size="sm">
-                Section average refers to the average of all sections that have
-                been filtered for using the specified options.
+                Section average is the average of that section across all years.
               </Text>
             )}
 
             {flag === 3 && (
               <Text style={{ color: "#383838" }} size="sm">
-                The precise number and percentage of students out of the total,
-                as well as information on the percentile range of the students
-                who received the respective grade.
+                The percentile range of the students who received the respective
+                grade.
               </Text>
             )}
           </div>
@@ -90,7 +88,8 @@ const EmptyLabel = () => {
         <IconDatabaseOff size={100} />
       </ActionIcon>
       <h3 className="mt-4 inline-block text-center text-base font-medium text-gray-500">
-        You have not added any <br /> classes yet.
+        No courses have been <br />
+        added yet.
       </h3>
     </div>
   );
@@ -177,14 +176,14 @@ const EmptyAside = () => {
             <div style={{ display: "flex" }}>
               {flag === 1 && (
                 <Text style={{ color: "#383838" }} size="sm">
-                  Course average refers to the average of all sections available
-                  across all instructors.
+                  Course average is the average of every sections available
+                  across all years.
                 </Text>
               )}
               {flag === 2 && (
                 <Text style={{ color: "#383838" }} size="sm">
-                  Section average refers to the average of all sections that
-                  have been filtered for using the specified options.
+                  Section average is the average of that section across all
+                  years.
                 </Text>
               )}
             </div>
@@ -199,14 +198,14 @@ const EmptyAside = () => {
       <Group spacing="xs" className="w-48 whitespace-nowrap">
         <div className="h-4 w-4 rounded bg-gray-300"></div>
         <Text weight={700} size="lg">
-          No Class Selected
+          No Class Added
         </Text>
       </Group>
       <Text style={{ padding: 2 }} size="sm" color="#595959">
-        No Class Name Data
+        No Class Name Info
       </Text>
       <Text style={{ padding: 2 }} size="sm" color="#595959">
-        No Section and Semester Data
+        No Section and Semester Info
       </Text>
       <div style={{ paddingTop: 25 }}>
         <Text
