@@ -356,7 +356,7 @@ export function InputSelections() {
               )
               .then(() => {
                 // Promise resolved successfully
-                console.log("Route changed!");
+                //console.log("Route changed!");
               })
               .catch((error) => {
                 // Promise rejected with an error

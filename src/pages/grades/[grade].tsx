@@ -54,8 +54,14 @@ type GradesGraphProps = {
 
 // ...
 
-export default function CourseGrade() {
+export default function CourseGrade({
+  metaTag,
+}: {
+  metaTag: { metaOg: string };
+}) {
   const router = useRouter();
+
+  console.log(metaTag, "metaTag");
 
   //const parsePath = router.asPath.lastIndexOf("/") + 1;
 
@@ -75,6 +81,7 @@ export default function CourseGrade() {
     if (!router.isReady) return;
 
     const query = router.query;
+    console.log(query);
 
     const courseIndices: number[] = (query.grade as string)
       .split("&")
@@ -186,7 +193,7 @@ export default function CourseGrade() {
   courses.map((item, i) => (item.color = colors[i] ?? item.color));
 
   const [scrollX, setScrollX] = useState<number>(0); // For detecting start scroll postion
-  const [scrolEnd, setScrollEnd] = useState<boolean>(false); // For detecting end of scrolling
+  const [scrolEnd, setScrollEnd] = useState<boolean>(true); // For detecting end of scrolling
 
   const scrl = useRef<HTMLDivElement>(null);
 

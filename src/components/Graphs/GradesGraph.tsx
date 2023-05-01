@@ -431,9 +431,8 @@ const PercentageLabel: React.FC<CustomLabelProps> = ({
     return null;
   }
 
-  const percentage = `${
-    value === 0 ? "" : value < 1 ? "<1%" : Math.round(value * 10) / 10
-  }%`;
+  const percentage =
+    value === 0 ? "" : value < 1 ? "<1%" : `${Math.round(value * 10) / 10}%`;
   return (
     <text x={x + width} y={y} dx={20} dy={17} fontSize={12} textAnchor="middle">
       {percentage}
