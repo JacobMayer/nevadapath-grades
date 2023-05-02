@@ -2259,65 +2259,65 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/core@npm:^6.0.9":
-  version: 6.0.9
-  resolution: "@mantine/core@npm:6.0.9"
+"@mantine/core@npm:^6.0.10":
+  version: 6.0.10
+  resolution: "@mantine/core@npm:6.0.10"
   dependencies:
     "@floating-ui/react": ^0.19.1
-    "@mantine/styles": 6.0.9
-    "@mantine/utils": 6.0.9
+    "@mantine/styles": 6.0.10
+    "@mantine/utils": 6.0.10
     "@radix-ui/react-scroll-area": 1.0.2
     react-remove-scroll: ^2.5.5
     react-textarea-autosize: 8.3.4
   peerDependencies:
-    "@mantine/hooks": 6.0.9
+    "@mantine/hooks": 6.0.10
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 3524e25f2008f5f6e121f50edb5fb4b2e643acbe70c980d523b5cbb9f0fad2dfbe30e69de574c3a7069c03ee1c82e5cdec6dcecde6c471841862873746d7e747
+  checksum: 9ef041357599584eed7cc23b68d5cb4d9fc88db1f9942c2f51360bbaeec5a02b66bf87a3f11ac2f40180aef8f098512d325b4df26c5328239011102f34800f13
   languageName: node
   linkType: hard
 
-"@mantine/hooks@npm:^6.0.9":
-  version: 6.0.9
-  resolution: "@mantine/hooks@npm:6.0.9"
+"@mantine/hooks@npm:^6.0.10":
+  version: 6.0.10
+  resolution: "@mantine/hooks@npm:6.0.10"
   peerDependencies:
     react: ">=16.8.0"
-  checksum: 06d90a3b0aa16326fb1e88de77effa7e0b72dde1d37691d729a3f274d22d62dd15516d1cc00a180b301c62e5321eecc0b305e91e5fc63487f408c22276224181
+  checksum: 95c634f8e391b5ade9b4fa68b8fb8341e41db123703606647809260016471147e2fbf5b6c5266f557e5f260ef65d21c9d5048a98c9040fbb59df390fe1f6a014
   languageName: node
   linkType: hard
 
-"@mantine/next@npm:^6.0.9":
-  version: 6.0.9
-  resolution: "@mantine/next@npm:6.0.9"
+"@mantine/next@npm:^6.0.10":
+  version: 6.0.10
+  resolution: "@mantine/next@npm:6.0.10"
   dependencies:
-    "@mantine/ssr": 6.0.9
-    "@mantine/styles": 6.0.9
+    "@mantine/ssr": 6.0.10
+    "@mantine/styles": 6.0.10
   peerDependencies:
     next: "*"
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: e174002b08a086842298329a1ead9f5b79df6dadc50baa69a365fda1cdaadb85f36359bbf29678b11cecbe17cc9f9126854ea4971216597a6ee66798ef4baf31
+  checksum: 445a14e22731fa03724f9bcd04229f0b9730bc2a23136cb6a1c01f28778be653af71728e4098d7e4f38640ea943c71498acd13fe09c1b7b81f627fc9271a1fa2
   languageName: node
   linkType: hard
 
-"@mantine/ssr@npm:6.0.9":
-  version: 6.0.9
-  resolution: "@mantine/ssr@npm:6.0.9"
+"@mantine/ssr@npm:6.0.10":
+  version: 6.0.10
+  resolution: "@mantine/ssr@npm:6.0.10"
   dependencies:
-    "@mantine/styles": 6.0.9
+    "@mantine/styles": 6.0.10
     html-react-parser: 1.4.12
   peerDependencies:
     "@emotion/react": ">=11.9.0"
     "@emotion/server": ">=11.4.0"
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: ab49f937e6b783efb05b8fd0b7ebe42a7985b429c94b1f24a204006d78bad2d13e2930b584783c7f36d7be789c1e32ea1f937db126cea6dcce4c3bd2899ad71d
+  checksum: 0340d04c5245fd2faf271e66918050c5259f48d02286f1f6a86d1c02b562cacc8b6782fe076e2b71e7167f7e08c02d2c976a21440e162b138800ff2b27d62433
   languageName: node
   linkType: hard
 
-"@mantine/styles@npm:6.0.9":
-  version: 6.0.9
-  resolution: "@mantine/styles@npm:6.0.9"
+"@mantine/styles@npm:6.0.10":
+  version: 6.0.10
+  resolution: "@mantine/styles@npm:6.0.10"
   dependencies:
     clsx: 1.1.1
     csstype: 3.0.9
@@ -2325,16 +2325,16 @@ __metadata:
     "@emotion/react": ">=11.9.0"
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: ab5a40ab3e273fe4883745d68a454919d136cd40a50e1d9a2155783fd577c8b6d9640c1f9679265dd18950a18039e36eaaa9f5a611cfc05b15d329a78b2ece4c
+  checksum: b88de24de6d56cdd3734efff97590cc8beb2439c01e486a78f984866fdc4d11126432ffd4423cc1c8b8337609ff9114b5acfe54ddea2b968e550edd78116d141
   languageName: node
   linkType: hard
 
-"@mantine/utils@npm:6.0.9":
-  version: 6.0.9
-  resolution: "@mantine/utils@npm:6.0.9"
+"@mantine/utils@npm:6.0.10":
+  version: 6.0.10
+  resolution: "@mantine/utils@npm:6.0.10"
   peerDependencies:
     react: ">=16.8.0"
-  checksum: 4a5d03b5dd8a4f8de5772c8198c8fc4608b7e3dc12e46cb14a9ae890ef4438dc6d704ca3d22dc083b51c86af7fd250410b088f752675ea616a4a82ad34985d29
+  checksum: 945e9a409ec74eb5cf811d87fd5859c6c5a520a36add1c90e9a7b50cc15dcc5a412f3f405f8be73a15e3c33682131c5aeb2b252809c1f32d2a6967970089ad3c
   languageName: node
   linkType: hard
 
@@ -3841,16 +3841,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn-globals@npm:^7.0.0":
-  version: 7.0.1
-  resolution: "acorn-globals@npm:7.0.1"
-  dependencies:
-    acorn: ^8.1.0
-    acorn-walk: ^8.0.2
-  checksum: 2a2998a547af6d0db5f0cdb90acaa7c3cbca6709010e02121fb8b8617c0fbd8bab0b869579903fde358ac78454356a14fadcc1a672ecb97b04b1c2ccba955ce8
-  languageName: node
-  linkType: hard
-
 "acorn-jsx@npm:^5.0.0, acorn-jsx@npm:^5.3.2":
   version: 5.3.2
   resolution: "acorn-jsx@npm:5.3.2"
@@ -3860,14 +3850,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn-walk@npm:^8.0.2, acorn-walk@npm:^8.1.1, acorn-walk@npm:^8.2.0":
+"acorn-walk@npm:^8.1.1, acorn-walk@npm:^8.2.0":
   version: 8.2.0
   resolution: "acorn-walk@npm:8.2.0"
   checksum: 1715e76c01dd7b2d4ca472f9c58968516a4899378a63ad5b6c2d668bba8da21a71976c14ec5f5b75f887b6317c4ae0b897ab141c831d741dc76024d8745f1ad1
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.0.0, acorn@npm:^8.1.0, acorn@npm:^8.4.1, acorn@npm:^8.6.0, acorn@npm:^8.7.0, acorn@npm:^8.8.0, acorn@npm:^8.8.2":
+"acorn@npm:^8.0.0, acorn@npm:^8.4.1, acorn@npm:^8.6.0, acorn@npm:^8.7.0, acorn@npm:^8.8.0, acorn@npm:^8.8.2":
   version: 8.8.2
   resolution: "acorn@npm:8.8.2"
   bin:
@@ -6550,25 +6540,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"escodegen@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "escodegen@npm:2.0.0"
-  dependencies:
-    esprima: ^4.0.1
-    estraverse: ^5.2.0
-    esutils: ^2.0.2
-    optionator: ^0.8.1
-    source-map: ~0.6.1
-  dependenciesMeta:
-    source-map:
-      optional: true
-  bin:
-    escodegen: bin/escodegen.js
-    esgenerate: bin/esgenerate.js
-  checksum: 5aa6b2966fafe0545e4e77936300cc94ad57cfe4dc4ebff9950492eaba83eef634503f12d7e3cbd644ecc1bab388ad0e92b06fd32222c9281a75d1cf02ec6cef
-  languageName: node
-  linkType: hard
-
 "eslint-config-next@npm:^13.3.4":
   version: 13.3.4
   resolution: "eslint-config-next@npm:13.3.4"
@@ -8637,18 +8608,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsdom@npm:^21.1.2":
-  version: 21.1.2
-  resolution: "jsdom@npm:21.1.2"
+"jsdom@npm:^22.0.0":
+  version: 22.0.0
+  resolution: "jsdom@npm:22.0.0"
   dependencies:
     abab: ^2.0.6
-    acorn: ^8.8.2
-    acorn-globals: ^7.0.0
     cssstyle: ^3.0.0
     data-urls: ^4.0.0
     decimal.js: ^10.4.3
     domexception: ^4.0.0
-    escodegen: ^2.0.0
     form-data: ^4.0.0
     html-encoding-sniffer: ^3.0.0
     http-proxy-agent: ^5.0.0
@@ -8672,7 +8640,7 @@ __metadata:
   peerDependenciesMeta:
     canvas:
       optional: true
-  checksum: 6b3cf2d15e5a5712b3db5ff56eba82b97c9a879b52e95063cc8323bdf8837b6ca15cfec85b57ab71c95c6b4a4098bf67f274c6ff4e9ff519aa4811a04f290610
+  checksum: 5d554ccb1637035d1c3baa832ce6f6c66549b6fa43cc7c39295250092e74a10c2e6c674cb40a208ae850d80436dd109862f95d293528345ab5d6cc5213847f8e
   languageName: node
   linkType: hard
 
@@ -9953,9 +9921,9 @@ __metadata:
     "@cloudflare/workers-types": ^4.20230404.0
     "@emotion/react": ^11.10.8
     "@emotion/server": ^11.10.0
-    "@mantine/core": ^6.0.9
-    "@mantine/hooks": ^6.0.9
-    "@mantine/next": ^6.0.9
+    "@mantine/core": ^6.0.10
+    "@mantine/hooks": ^6.0.10
+    "@mantine/next": ^6.0.10
     "@playwright/test": ^1.33.0
     "@tabler/icons-react": ^2.17.0
     "@testing-library/react": ^14.0.0
@@ -9972,7 +9940,7 @@ __metadata:
     autoprefixer: ^10.4.14
     eslint: ^8.39.0
     eslint-config-next: ^13.3.4
-    jsdom: ^21.1.2
+    jsdom: ^22.0.0
     next: ^13.3.4
     postcss: ^8.4.23
     prettier: ^2.8.8

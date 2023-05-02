@@ -198,7 +198,7 @@ const EmptyAside = () => {
       <Group spacing="xs" className="w-48 whitespace-nowrap">
         <div className="h-4 w-4 rounded bg-gray-300"></div>
         <Text weight={700} size="lg">
-          No Class Added
+          No Class Selected
         </Text>
       </Group>
       <Text style={{ padding: 2 }} size="sm" color="#595959">
