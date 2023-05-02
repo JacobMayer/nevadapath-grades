@@ -34,12 +34,12 @@ export function binarySearch(arr: Grade[], n: string) {
 
   while (min <= max) {
     const mid = Math.floor((min + max) / 2);
-    // console.log(
-    //   `${arr[mid]?.Subject ?? ""}${arr[mid]?.Number ?? ""}${
-    //     arr[mid]?.Ext ?? ""
-    //   }`,
-    //   n
-    // );
+    console.log(
+      `${arr[mid]?.Subject ?? ""}${arr[mid]?.Number ?? ""}${
+        arr[mid]?.Ext ?? ""
+      }`,
+      n
+    );
     if (
       `${arr[mid]?.Subject ?? ""}${arr[mid]?.Number ?? ""}${
         arr[mid]?.Ext ?? ""
@@ -78,4 +78,18 @@ export function binarySearch(arr: Grade[], n: string) {
   }
 
   return [-1];
+}
+
+export function linearSearch(arr: Grade[], n: string) {
+  n = n.replaceAll(" ", "");
+  const indicies = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (
+      `${arr[i]?.Subject ?? ""}${arr[i]?.Number ?? ""}${arr[i]?.Ext ?? ""}` ===
+      n
+    ) {
+      indicies.push(i);
+    }
+  }
+  return indicies;
 }

@@ -54,14 +54,8 @@ type GradesGraphProps = {
 
 // ...
 
-export default function CourseGrade({
-  metaTag,
-}: {
-  metaTag: { metaOg: string };
-}) {
+export default function CourseGrade() {
   const router = useRouter();
-
-  console.log(metaTag, "metaTag");
 
   //const parsePath = router.asPath.lastIndexOf("/") + 1;
 
@@ -81,7 +75,7 @@ export default function CourseGrade({
     if (!router.isReady) return;
 
     const query = router.query;
-    console.log(query);
+    //console.log(query);
 
     const courseIndices: number[] = (query.grade as string)
       .split("&")
@@ -94,7 +88,7 @@ export default function CourseGrade({
         continue;
       }
       const title = `${(GradesList.Grades[courseIndex] as Grade).Subject} ${
-        (GradesList.Grades[courseIndex] as Grade).Number
+        (GradesList.Grades[courseIndex] as Grade).Number ?? ""
       } ${(GradesList.Grades[courseIndex] as Grade).Section}`;
       const description = (GradesList.Grades[courseIndex] as Grade).Description;
       const term = (GradesList.Grades[courseIndex] as Grade).Term;

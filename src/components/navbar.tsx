@@ -113,11 +113,16 @@ export default function Navbar({ links }: HeaderResponsiveProps) {
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} className="flex flex-row items-center pl-6">
+    <Header
+      height={HEADER_HEIGHT}
+      className="flex flex-row items-center pl-6"
+      role="navigation"
+    >
       <Link href="/" passHref>
         <Button
           variant="subtle"
           className="text-xl font-semibold text-gray-700 hover:text-sky-500"
+          role="link"
         >
           Nevadapath
         </Button>

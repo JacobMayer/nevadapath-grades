@@ -8,8 +8,9 @@ import Select, { CSSObjectWithLabel, createFilter } from "react-select";
 import CustomOption from "./customOptionSelect";
 import Grades from "../data/grades.json";
 import { GlobalContext } from "../contexts/AppContext";
-import { binarySearch } from "../utils/binarySearch";
+import { linearSearch } from "../utils/binarySearch";
 import type { GradesData } from "~/data/gradeType";
+import { FilterOptionOption } from "react-select/dist/declarations/src/filters";
 
 const GradesList = Grades as GradesData;
 
@@ -28,7 +29,7 @@ export function InputSelections() {
   };
 
   for (const grade of GradesList.Grades) {
-    let course = `${grade.Subject} ${grade.Number} ${grade.Ext}`;
+    let course = `${grade.Subject} ${grade.Number ?? ""} ${grade.Ext}`;
     course = course.trim();
     uniqueCourses.add(course);
   }
@@ -102,7 +103,7 @@ export function InputSelections() {
   //   Grades.Grades,
   //   selectedCourseIndex ? selectedCourseIndex.label : ""
   // );
-  const inx = binarySearch(
+  const inx = linearSearch(
     GradesList.Grades,
     selectedCourseIndex ? selectedCourseIndex.label : ""
   );
@@ -112,7 +113,7 @@ export function InputSelections() {
     setSelectedTerm(null);
   };
 
-  const regex = new RegExp(/.*\s.*\s(.*)/); // Matches for course extentions
+  const regex = new RegExp(/.*\s.*\s(\w+)/); // Matches for course extentions
 
   //console.log(selectedCourseIndex, inx);
 
@@ -229,6 +230,18 @@ export function InputSelections() {
     //matchFrom: matchFromStart ? ('start' as const) : ('any' as const),
   };
 
+  function customFilter(
+    option: FilterOptionOption<SelectOption>,
+    rawInput: string
+  ) {
+    const input = rawInput.trim();
+    const words = input.split(/\s+/g);
+    const hasWords = (s: string) =>
+      words.every((w) => s.toLowerCase().includes(w.toLowerCase()));
+
+    return hasWords(option.label.replaceAll(" ", ""));
+  }
+
   return (
     <Grid className="px-6" grow>
       <Grid.Col xs={7} sm={6} md={3} lg={3}>
@@ -240,7 +253,7 @@ export function InputSelections() {
           }}
           //filterOption={createFilter({ ignoreAccents: false })}
           //ignoreAccents={false}
-          filterOption={createFilter(filterConfig)}
+          filterOption={customFilter}
           //noOptionsMessage={() => "No options"}
           captureMenuScroll={false}
           isClearable={true}
