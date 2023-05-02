@@ -1,28 +1,65 @@
-# Create T3 App
+# Grade Distribution App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is a React app that displays grade distributions. The app includes end-to-end testing with Playwright and component/unit testing with ViTest.
 
-## What's next? How do I make an app with this?
+## How do I use this?
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+### 1. Clone the repository
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+```bash
+git clone
+```
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+### 2. Install dependencies
+
+```bash
+yarn install
+```
+
+### 3. Start the development server
+
+```bash
+yarn dev
+```
+
+### 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+
+## Running Tests
+
+### End-to-End Testing with Playwright
+
+To run the end-to-end tests with Playwright, use the following command:
+
+```
+yarn run test:e2e
+```
+
+This will launch the app in a test environment and run the end-to-end tests defined in the `tests/e2e` directory.
+
+### Component/Unit Testing with ViTest
+
+To run the component/unit tests with ViTest, use the following command:
+
+```
+yarn run test:ci
+```
+
+This will run the component/unit tests defined in the `tests/unit` directory.
 
 ## Learn More
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+To learn more about the technologies used in this app, refer to the respective documentation:
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- [React](https://reactjs.org/)
+- [Playwright](https://playwright.dev/)
+- [ViTest](https://vitest.net/)
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Contributing
 
-## How do I deploy this?
+Contributions are welcome! Feel free to submit a pull request or open an issue if you find a bug or have a suggestion for improvement.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## Deployment
+
+To deploy the app, you can follow the deployment guides for [Vercel](https://vercel.com/), [Netlify](https://www.netlify.com/), or [Docker](https://www.docker.com/).
