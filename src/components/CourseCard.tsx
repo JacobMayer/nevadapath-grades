@@ -46,8 +46,8 @@ export default function CourseCard(props: CourseInfo) {
   };
 
   return (
-    <div style={{ width: 340, marginBottom: 25 }}>
-      <Card shadow="sm" p="lg" className="min-w-max">
+    <div style={{ width: 340, marginBottom: 25 }} className="min-w-max">
+      <Card shadow="sm" p="lg">
         <Group
           position="apart"
           style={{ marginBottom: 5, marginTop: theme.spacing.sm }}

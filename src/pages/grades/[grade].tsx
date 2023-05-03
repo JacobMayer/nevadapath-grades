@@ -262,7 +262,7 @@ export default function CourseGrade() {
             )}
           </div>
           <div
-            className="relative flex space-x-4 overflow-x-auto px-6"
+            className="flex space-x-4 overflow-x-auto px-6"
             ref={scrl}
             onScroll={scrollCheck}
           >
