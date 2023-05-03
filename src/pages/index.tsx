@@ -69,7 +69,7 @@ const Home: NextPage = () => {
         >
           <div className="lg:w-1/2 flex w-full flex-col items-start justify-center px-6 pb-24 pt-12">
             <h1 className="my-4 text-3xl font-bold text-gray-700">
-              Course Grade Distributions
+              Course Grade Distributions for UNR
             </h1>
             <p className="mb-4 leading-normal text-gray-600">
               Gain insight into the courses offered at UNR by viewing past grade
