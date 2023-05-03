@@ -84,7 +84,11 @@ const Disclaimer = () => {
 const EmptyLabel = () => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <ActionIcon variant="transparent" color="gray">
+      <ActionIcon
+        variant="transparent"
+        color="gray"
+        aria-label="No classes haven been added yet"
+      >
         <IconDatabaseOff size={100} />
       </ActionIcon>
       <h3 className="mt-4 inline-block text-center text-base font-medium text-gray-500">

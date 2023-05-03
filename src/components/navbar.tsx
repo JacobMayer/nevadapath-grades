@@ -101,7 +101,7 @@ export default function Navbar({ links }: HeaderResponsiveProps) {
   const { classes } = useStyles();
 
   const items = links.map((link) => (
-    <Link key={link.label} href={link.link}>
+    <Link key={link.label} href={link.link} aria-label={link.label}>
       <Button
         variant="subtle"
         className="font-semibold text-gray-700 hover:text-sky-500"
@@ -118,7 +118,7 @@ export default function Navbar({ links }: HeaderResponsiveProps) {
       className="flex flex-row items-center pl-6"
       role="navigation"
     >
-      <Link href="/" passHref>
+      <Link href="/" passHref aria-label="Home page">
         <Button
           variant="subtle"
           className="text-xl font-semibold text-gray-700 hover:text-sky-500"

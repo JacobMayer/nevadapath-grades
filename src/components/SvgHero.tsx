@@ -565,7 +565,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
               d="M794.5,49h-606c-6.351,0-11.5,5.1487-11.5,11.5s5.149,11.5,11.5,11.5h606c6.351,0,11.5-5.1487,11.5-11.5s-5.149-11.5-11.5-11.5Z"
               fill="#fff"
             />
-            <Link href="/">
+            <Link href="/" aria-label="Home page">
               <g className="rect group">
                 <rect
                   x="205"
@@ -582,7 +582,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
                 />
               </g>
             </Link>
-            <Link href="/grades">
+            <Link href="/grades" aria-label="See grades">
               <g className="rect group">
                 <rect
                   x="720"

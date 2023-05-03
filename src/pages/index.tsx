@@ -78,7 +78,12 @@ const Home: NextPage = () => {
               when selecting courses and planning your academic journey at UNR.
             </p>
             <Link href="/grades" passHref>
-              <Button variant="light" size="lg" role="button">
+              <Button
+                variant="light"
+                size="lg"
+                role="button"
+                className="text-sky-900"
+              >
                 See Grades
               </Button>
             </Link>
