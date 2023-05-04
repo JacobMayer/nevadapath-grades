@@ -137,6 +137,7 @@ export default function Navbar({ links }: HeaderResponsiveProps) {
           onClick={toggle}
           className={classes.burger}
           size="sm"
+          aria-label="Toggle navigation menu"
         />
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
