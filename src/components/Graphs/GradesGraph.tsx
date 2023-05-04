@@ -344,7 +344,7 @@ const Aside = ({ props, hoveredOnGrade }: AsideProps) => {
           </Text>
           <Text>
             {GradesList.Grades[index]!["Course Average"] != null
-              ? `${String(GradesList.Grades[index]!["Course Average"])}`
+              ? `(${String(GradesList.Grades[index]!["Course Average"])})`
               : ""}
           </Text>
         </Group>
@@ -619,6 +619,8 @@ const SimpleBarChart = ({ course, payload }: GradesGraphProps) => {
                 type="category"
                 opacity="0.5"
                 interval={0}
+                textAnchor="end"
+                dx={0}
               />
               {course.length > 0 ? (
                 <YAxis
