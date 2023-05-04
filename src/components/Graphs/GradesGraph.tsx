@@ -13,7 +13,7 @@ import Grades from "../../data/grades.json";
 import { ActionIcon, Group, Text, HoverCard } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 
-import { IconInfoCircle, IconDatabaseOff } from "@tabler/icons-react";
+import { IconInfoCircle, IconChartBarOff } from "@tabler/icons-react";
 import * as vars from "../../variables/Variables";
 import { gpaToGrade, percentileToString } from "../../utils/utils";
 import type { Grade, GradesData } from "~/data/gradeType";
@@ -84,15 +84,14 @@ const Disclaimer = () => {
 const EmptyLabel = () => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <ActionIcon
-        variant="transparent"
-        color="gray"
+      <IconChartBarOff
+        className="text-gray-400"
         aria-label="No classes haven been added yet"
-      >
-        <IconDatabaseOff size={100} />
-      </ActionIcon>
+        stroke={1.5}
+        size={35}
+      />
       <h3 className="mt-4 inline-block text-center text-base font-medium text-gray-500">
-        No courses have been <br />
+        No classes have been <br />
         added yet.
       </h3>
     </div>
@@ -498,7 +497,7 @@ const SimpleBarChart = ({ course, payload }: GradesGraphProps) => {
         Grade Distribution
       </div>
       {course.length <= 0 && ( // If no courses are selected, display the empty label
-        <div className="absolute inset-0 ml-4 mt-24 lg:mr-44">
+        <div className="absolute inset-x-0 ml-4 mt-24 lg:mr-44">
           <EmptyLabel />
         </div>
       )}
@@ -619,8 +618,6 @@ const SimpleBarChart = ({ course, payload }: GradesGraphProps) => {
                 type="category"
                 opacity="0.5"
                 interval={0}
-                textAnchor="end"
-                dx={0}
               />
               {course.length > 0 ? (
                 <YAxis
